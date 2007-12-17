@@ -20,7 +20,6 @@ Requires(pre):	apache >= %{apache_version}
 Requires:	apache-conf >= %{apache_version}
 Requires:	apache >= %{apache_version}
 BuildRequires:	apache-devel >= %{apache_version}
-BuildRoot:	%{_tmppath}/%{name}-%{version}-buildroot
 
 %description
 DNS Protocol module for Apache 2.x
