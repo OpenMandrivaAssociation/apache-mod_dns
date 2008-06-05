@@ -7,7 +7,7 @@
 Summary:	DNS Protocol module for Apache 2.x
 Name:		apache-%{mod_name}
 Version:	1.02
-Release:	%mkrel 2
+Release:	%mkrel 3
 Group:		System/Servers
 License:	Apache License
 URL:		http://www.beamartyr.net/
