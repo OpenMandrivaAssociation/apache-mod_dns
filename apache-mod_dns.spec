@@ -7,7 +7,7 @@
 Summary:	DNS Protocol module for Apache 2.x
 Name:		apache-%{mod_name}
 Version:	1.02
-Release:	%mkrel 10
+Release:	10
 Group:		System/Servers
 License:	Apache License
 URL:		http://www.beamartyr.net/
@@ -20,7 +20,6 @@ Requires(pre):	apache >= %{apache_version}
 Requires:	apache-conf >= %{apache_version}
 Requires:	apache >= %{apache_version}
 BuildRequires:	apache-devel >= %{apache_version}
-BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
 %description
 DNS Protocol module for Apache 2.x
@@ -33,10 +32,9 @@ cp %{SOURCE1} %{mod_conf}
 
 %build
 
-%{_sbindir}/apxs -c mod_dns.c buckets.c errors.c protocol.c rr/*.c
+%{_bindir}/apxs -c mod_dns.c buckets.c errors.c protocol.c rr/*.c
 
 %install
-[ "%{buildroot}" != "/" ] && rm -rf %{buildroot}
 
 install -d %{buildroot}%{_libdir}/apache-extramodules
 install -d %{buildroot}%{_sysconfdir}/httpd/modules.d
@@ -57,10 +55,61 @@ if [ "$1" = "0" ]; then
 fi
 
 %clean
-[ "%{buildroot}" != "/" ] && rm -rf %{buildroot}
 
 %files
-%defattr(-,root,root)
 %attr(0644,root,root) %config(noreplace) %{_sysconfdir}/httpd/modules.d/%{mod_conf}
 %attr(0755,root,root) %{_libdir}/apache-extramodules/%{mod_so}
 
+
+
+%changelog
+* Sat Feb 11 2012 Oden Eriksson <oeriksson@mandriva.com> 1.02-10mdv2012.0
++ Revision: 772618
+- rebuild
+
+* Tue May 24 2011 Oden Eriksson <oeriksson@mandriva.com> 1.02-9
++ Revision: 678304
+- mass rebuild
+
+* Sun Oct 24 2010 Oden Eriksson <oeriksson@mandriva.com> 1.02-8mdv2011.0
++ Revision: 587962
+- rebuild
+
+* Mon Mar 08 2010 Oden Eriksson <oeriksson@mandriva.com> 1.02-7mdv2010.1
++ Revision: 516090
+- rebuilt for apache-2.2.15
+
+* Sat Aug 01 2009 Oden Eriksson <oeriksson@mandriva.com> 1.02-6mdv2010.0
++ Revision: 406574
+- rebuild
+
+* Tue Jan 06 2009 Oden Eriksson <oeriksson@mandriva.com> 1.02-5mdv2009.1
++ Revision: 325693
+- rebuild
+
+* Mon Jul 14 2008 Oden Eriksson <oeriksson@mandriva.com> 1.02-4mdv2009.0
++ Revision: 234930
+- rebuild
+
+* Thu Jun 05 2008 Oden Eriksson <oeriksson@mandriva.com> 1.02-3mdv2009.0
++ Revision: 215569
+- fix rebuild
+- fix buildroot
+
+* Fri Mar 07 2008 Oden Eriksson <oeriksson@mandriva.com> 1.02-2mdv2008.1
++ Revision: 181718
+- rebuild
+
+  + Olivier Blin <blino@mandriva.org>
+    - restore BuildRoot
+
+  + Thierry Vignaud <tv@mandriva.org>
+    - kill re-definition of %%buildroot on Pixel's request
+
+* Wed Nov 14 2007 Oden Eriksson <oeriksson@mandriva.com> 1.02-1mdv2008.1
++ Revision: 108778
+- import apache-mod_dns
+
+
+* Wed Nov 14 2007 Oden Eriksson <oeriksson@mandriva.com> 1.02-1mdv2008.1
+- initial Mandriva package
