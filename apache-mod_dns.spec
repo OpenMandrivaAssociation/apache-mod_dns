@@ -7,7 +7,7 @@
 Summary:	DNS Protocol module for Apache 2.x
 Name:		apache-%{mod_name}
 Version:	1.02
-Release:	10
+Release:	11
 Group:		System/Servers
 License:	Apache License
 URL:		http://www.beamartyr.net/
@@ -43,15 +43,11 @@ install -m0755 .libs/%{mod_so} %{buildroot}%{_libdir}/apache-extramodules
 install -m0644 %{mod_conf} %{buildroot}%{_sysconfdir}/httpd/modules.d/%{mod_conf}
 
 %post
-if [ -f %{_var}/lock/subsys/httpd ]; then
-    %{_initrddir}/httpd restart 1>&2;
-fi
+/bin/systemctl daemon-reload >/dev/null 2>&1 || :
 
 %postun
 if [ "$1" = "0" ]; then
-    if [ -f %{_var}/lock/subsys/httpd ]; then
-        %{_initrddir}/httpd restart 1>&2
-    fi
+    /bin/systemctl daemon-reload >/dev/null 2>&1 || :
 fi
 
 %clean
