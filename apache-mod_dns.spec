@@ -10,7 +10,7 @@ Version:	1.02
 Release:	12
 Group:		System/Servers
 License:	Apache License
-URL:		http://www.beamartyr.net/
+URL:		https://www.beamartyr.net/
 Source0:	http://www.beamartyr.net/mod-dns-%{version}.tar.bz2
 Source1:	%{mod_conf}
 Requires(pre): rpm-helper
